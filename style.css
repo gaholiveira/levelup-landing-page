@@ -378,16 +378,12 @@ html {
    ========================================= */
 
 /* =========================================
-   SECÇÃO 2: O QUE VOCÊ VAI APRENDER (PREMIUM)
+   SECÇÃO 2: O QUE VOCÊ VAI APRENDER (PREMIUM GLASS)
    ========================================= */
 
 .secao-conteudo {
     padding: 100px 0;
-    
-    /* REMOVEMOS A COR DE FUNDO */
-    background-color: transparent; 
-    
-    /* Como é transparente, vai mostrar o degradê do body que está atrás */
+    background-color: transparent; /* Deixa ver o fundo global */
 }
 
 /* Título */
@@ -410,126 +406,142 @@ html {
 /* Grid Layout */
 .grid-cards {
     display: grid;
-    /* Responsivo automático: Colunas de no mínimo 320px */
+    /* Responsivo automático */
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
-    padding: 0 10px; /* Margem de segurança no mobile */
+    padding: 0 10px;
 }
 
-/* --- O CARD ESTILO MENTORIA --- */
+/* --- O CARD ESTILO VIDRO (GLASSMORPHISM) --- */
 .card {
-    /* 1. Fundo com degradê para não ficar "chapado" */
-    background: linear-gradient(145deg, #151515 0%, #0a0a0a 100%);
+    /* MUDANÇA 1: Fundo Vidro Transparente */
+    background: rgba(255, 255, 255, 0.03);
+    
+    /* O Segredo do Desfoque */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     
     padding: 50px 35px;
     border-radius: 12px;
     
-    /* 2. Borda cinza subtil inicial */
-    border: 1px solid #333;
+    /* MUDANÇA 2: Borda Vidro (fina e transparente) */
+    border: 1px solid rgba(255, 255, 255, 0.05);
     
     position: relative;
     transition: all 0.4s ease;
-    
-    /* Sombra leve para separar do fundo preto */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    overflow: hidden; /* Importante para a listra de velocidade não vazar */
 }
 
 /* O Efeito Hover (Ao passar o mouse) */
 .card:hover {
-    transform: translateY(-10px); /* Sobe um pouco */
+    transform: translateY(-10px);
     
-    /* A borda fica Dourada */
+    /* Fundo clareia levemente */
+    background: rgba(255, 255, 255, 0.07);
+    
+    /* Borda Dourada */
     border-color: var(--cor-destaque);
     
-    /* Cria um brilho dourado suave por trás */
+    /* Brilho Dourado por trás */
     box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
-    
-    /* Fundo fica ligeiramente mais claro */
-    background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
 }
 
-/* --- ÍCONES F1 (ARTEFATOS) --- */
+/* --- DETALHE F1: LISTRA DE VELOCIDADE --- */
+/* Uma linha dourada que enche na lateral esquerda ao passar o mouse */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 0%; /* Começa invisível */
+    background: var(--cor-destaque);
+    transition: 0.3s ease;
+    box-shadow: 0 0 10px var(--cor-destaque);
+}
+
+.card:hover::after {
+    height: 100%; /* Enche de cima a baixo */
+}
+
+/* --- ÍCONES F1 --- */
 .card-icone {
-    width: 70px;  /* Tamanho da caixa do ícone */
+    width: 70px;
     height: 70px;
     margin-bottom: 25px;
-    
-    /* Cor inicial (Dourado escuro/metálico) */
-    color: #8a6d3b; 
-    
-    transition: all 0.4s ease; /* Animação suave */
+    color: #8a6d3b; /* Dourado escuro inicial */
+    transition: all 0.4s ease;
 }
 
-/* O SVG dentro do ícone herda o tamanho */
 .card-icone svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); /* Sombra para dar volume 3D */
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
 }
 
-/* Efeito Hover: O ícone ACENDE */
 .card:hover .card-icone {
-    color: var(--cor-destaque); /* Fica Dourado Brilhante */
-    transform: scale(1.1) rotate(-5deg); /* Cresce e inclina levemente (movimento) */
-    
-    /* Adiciona um brilho de "Luz" (Glow) */
+    color: var(--cor-destaque); /* Aceso */
+    transform: scale(1.1) rotate(-5deg); /* Movimento */
     filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
 }
-/* Título do Card */
+
+/* Tipografia */
 .card h3 {
     font-size: 1.6rem;
     color: #fff;
     margin-bottom: 15px;
 }
 
-/* Texto do Card */
 .card p {
-    color: #b0b0b0; /* Cinza claro para boa leitura */
+    color: #ccc; /* Clareei um pouco para contrastar com o vidro */
     font-size: 1rem;
     line-height: 1.7;
 }
 
 /* =========================================
-   AJUSTE MOBILE (CARDS)
+   AJUSTE MOBILE
    ========================================= */
 @media (max-width: 900px) {
-    .titulo-secao h2 {
-        font-size: 2rem;
-    }
+    .titulo-secao h2 { font-size: 2rem; }
     
     .card {
-        text-align: center; /* Centraliza o texto dos cards no celular */
+        text-align: center;
         padding: 40px 20px;
+    }
+    
+    /* No mobile a listra fica em baixo para não atrapalhar o texto centralizado */
+    .card::after {
+        left: 0; 
+        width: 100%; 
+        height: 3px; 
+        top: auto; 
+        bottom: 0; 
+        width: 0%;
+    }
+    .card:hover::after {
+        width: 100%;
+        height: 3px;
     }
 }
 
 /* =========================================
-   ANIMAÇÕES DE SCROLL (SCROLL REVEAL)
+   ANIMAÇÕES DE SCROLL
    ========================================= */
-
-/* Estado Inicial: O elemento está invisível e 50px para baixo */
 .escondido {
     opacity: 0;
-    filter: blur(5px); /* Um leve desfoque inicial fica chique */
-    transform: translateY(50px); /* Começa mais baixo */
-    transition: all 1s ease; /* Demora 1 segundo para subir */
+    filter: blur(5px);
+    transform: translateY(50px);
+    transition: all 1s ease;
 }
 
-/* Estado Final: O elemento aparece e vai para o lugar certo */
 .mostrar {
     opacity: 1;
     filter: blur(0);
     transform: translateY(0);
 }
 
-/* Efeito Cascata (Staggering) para os Cards */
-/* Faz os cards entrarem um depois do outro, não todos ao mesmo tempo */
-.card:nth-child(2) {
-    transition-delay: 200ms; /* O segundo card espera um pouco */
-}
-.card:nth-child(3) {
-    transition-delay: 400ms; /* O terceiro card espera mais um pouco */
-}
+.card:nth-child(2) { transition-delay: 200ms; }
+.card:nth-child(3) { transition-delay: 400ms; }
 
 /* =========================================
    SECÇÃO 3: MENTORES (DUPLA) - COM EFEITO VIDRO
@@ -1089,5 +1101,234 @@ html {
     .form-visual-box {
         width: 100%;
         padding: 30px 20px;
+    }
+}
+
+/* =========================================
+   SECÇÃO 6: FAQ (ACORDEÃO)
+   ========================================= */
+
+.secao-faq {
+    padding: 80px 0 120px 0; /* Mais espaço em baixo para o footer respirar */
+    background: transparent;
+}
+
+.faq-wrapper {
+    max-width: 800px; /* FAQ deve ser mais estreito para leitura fácil */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* O Item (Caixa Fechada) */
+.faq-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden; /* Garante que nada sai da borda */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+}
+
+/* Hover no Item */
+.faq-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(212, 175, 55, 0.3); /* Borda Dourada Suave */
+}
+
+/* O Item quando está ABERTO (Ativo) */
+.faq-item[open] {
+    background: rgba(10, 10, 10, 0.8); /* Fundo mais escuro para leitura */
+    border-color: var(--cor-destaque); /* Borda Dourada Forte */
+    box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+}
+
+/* O Cabeçalho Clicável (Pergunta) */
+summary {
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between; /* Texto na esq, seta na dir */
+    align-items: center;
+    list-style: none; /* Remove seta padrão feia do navegador */
+    outline: none;
+}
+
+/* Remove seta padrão no Chrome/Safari */
+summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-pergunta {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.faq-item[open] .faq-pergunta {
+    color: var(--cor-destaque); /* Pergunta fica dourada quando aberta */
+}
+
+/* A Seta Customizada */
+.faq-seta {
+    color: var(--cor-destaque);
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+/* Rotação da Seta quando aberto */
+.faq-item[open] .faq-seta {
+    transform: rotate(180deg); /* Vira para cima */
+}
+
+/* A Resposta (Conteúdo) */
+.faq-resposta {
+    padding: 0 25px 25px 25px; /* Espaço nas laterais e em baixo */
+    color: #ccc;
+    line-height: 1.6;
+    font-size: 1rem;
+    
+    /* Pequena animação de entrada */
+    animation: fade-in 0.5s ease;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ajuste Mobile */
+@media (max-width: 900px) {
+    .faq-pergunta {
+        font-size: 1rem;
+        padding-right: 10px; /* Para não colar na seta */
+    }
+}
+
+/* =========================================
+   SECÇÃO 7: RODAPÉ (FOOTER)
+   ========================================= */
+
+.rodape {
+    /* Fundo Preto Sólido para ancorar o final da página */
+    background-color: #000000;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha subtil de separação */
+    padding: 80px 0 30px 0;
+    margin-top: 50px;
+    position: relative;
+    z-index: 10; /* Fica acima das partículas */
+}
+
+.rodape-grid {
+    display: grid;
+    /* Cria 3 colunas: A primeira maior (2fr) e as outras normais (1fr) */
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+/* Tipografia do Rodapé */
+.logo-rodape {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.rodape-coluna p {
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 300px;
+    margin-bottom: 25px;
+}
+
+.rodape-coluna h4 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+/* Links */
+.rodape-links {
+    list-style: none;
+}
+
+.rodape-links li {
+    margin-bottom: 12px;
+}
+
+.rodape-links a {
+    color: #888;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.rodape-links a:hover {
+    color: var(--cor-destaque); /* Fica dourado ao passar o mouse */
+    padding-left: 5px; /* Move um pouco para a direita */
+}
+
+/* Redes Sociais */
+.redes-sociais {
+    display: flex;
+    gap: 15px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.social-link:hover {
+    background: var(--cor-destaque);
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Barra Final (Copyright) */
+.rodape-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.rodape-bottom p {
+    color: #555;
+    font-size: 0.85rem;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .rodape-grid {
+        grid-template-columns: 1fr; /* Tudo em uma coluna no celular */
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .rodape-coluna p {
+        margin: 0 auto 25px auto; /* Centraliza o parágrafo */
+    }
+    
+    .redes-sociais {
+        justify-content: center;
+    }
+    
+    .rodape-bottom {
+        flex-direction: column;
+        text-align: center;
     }
 }
