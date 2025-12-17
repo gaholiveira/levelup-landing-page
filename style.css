@@ -27,16 +27,16 @@ body {
     font-family: var(--fonte-principal);
     line-height: 1.6;
 
-    /* --- O NOVO DEGRADÊ MAIS CINZA --- */
-    background-color: #141414; /* Cor de segurança mais clara */
+    /* --- O NOVO DEGRADÊ INVERTIDO (TOPO ESCURO) --- */
+    background-color: #050505; /* Cor de segurança (Preto) */
     
     background: 
-        /* Camada 1: O Brilho Dourado (Aumentei levemente a força para 0.08) */
-        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+        /* Camada 1: O Brilho Dourado (Mais sutil no topo escuro) */
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.05) 0%, transparent 60%),
         
-        /* Camada 2: A Base Cinza (Aqui está a mudança principal) */
-        /* De Cinza Médio (#2e2e2e) para Cinza Escuro (#141414) */
-        linear-gradient(160deg, #2e2e2e 0%, #141414 100%);
+        /* Camada 2: O Degradê de Profundidade */
+        /* Começa PRETO no topo e vai ficando CINZA ESCURO em baixo */
+        linear-gradient(to bottom, #050505 0%, #1a1a1a 100%);
     
     /* Fixa o fundo na tela para efeito 3D ao rolar */
     background-attachment: fixed; 
@@ -93,9 +93,8 @@ body {
     /* Removemos o margin: 0 auto, pois agora é alinhado à esquerda */
 }
 
-/* Coluna de Imagem */
 /* =========================================
-   IMAGEM COM FUSÃO (BLENDING)
+   IMAGEM HERO (ESTILO MOLDURA DOURADA)
    ========================================= */
 
 .hero-img {
@@ -103,50 +102,55 @@ body {
     justify-content: flex-end; /* Alinha à direita no Desktop */
     align-items: center;       /* Centraliza verticalmente */
     flex-basis: 45%;
+    position: relative;
+    z-index: 1;
 }
 
-/* O "Envelope" que cria a borda */
+/* O "Envelope" que cria a borda quadrada */
 .moldura-wrapper {
-    position: relative; /* Necessário para ajustes */
+    position: relative;
     padding: 10px;      /* Espaço entre a foto e a borda (respiro) */
     display: inline-block; /* A caixa fica do tamanho exato da foto */
     
-    /* --- A MOLDURA DOURADA (IGUAL AO BOTÃO) --- */
+    /* --- A MOLDURA DOURADA --- */
     border: 3px solid transparent; /* Define a espessura */
     
-    /* O Segredo do Degradê na Borda: */
+    /* O Degradê na Borda */
     border-image: linear-gradient(90deg, #b68d40 0%, #f4e084 50%, #b68d40 100%);
     border-image-slice: 1; /* Faz o degradê preencher a borda toda */
     
-    /* Sombra opcional para destacar a moldura do fundo preto */
+    /* Sombra para destacar a moldura do fundo preto */
     box-shadow: 0 0 40px rgba(0,0,0,0.8); 
 }
 
 /* A Imagem dentro da moldura */
 .moldura-wrapper img {
-    display: block; /* Remove espaços brancos estranhos */
-    max-width: 450px;
+    display: block;
+    max-width: 500px; /* Tamanho imponente */
     width: 100%;
     height: auto;
     
-    /* Filtros (Visual Dark) */
+    /* Filtros: Voltamos ao visual "Dark/Cinematográfico" */
     filter: grayscale(20%) sepia(10%) contrast(110%) brightness(90%);
 
-    /* O EFEITO DE FUSÃO (MASK) */
-    /* Nota: Como tem moldura, suavizei o fade para não parecer estranho */
+    /* MÁSCARA LINEAR (Suave nas laterais, mas mantém o formato quadrado) */
     -webkit-mask-image: linear-gradient(to right, black 5%, black 95%, transparent 100%);
     mask-image: linear-gradient(to right, black 5%, black 95%, transparent 100%);
+    
+    transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-/* Mantemos o hover para dar vida */
+/* Hover: A imagem "acende" e ganha cor */
 .hero-img img:hover {
     transform: scale(1.02);
     filter: grayscale(0%) sepia(0%) contrast(110%) brightness(100%);
 }
 
+/* Removendo estilos do branding (caso ainda estejam no HTML) para não atrapalhar */
+.brand-name { display: none; }
+
 /* =========================================
    RESPONSIVIDADE (MOBILE)
-   Aqui acontece a mágica para telemóveis
    ========================================= */
 @media (max-width: 900px) {
     
@@ -156,7 +160,8 @@ body {
     }
 
     .hero-content {
-        flex-direction: column-reverse; /* Imagem em cima, texto em baixo */
+        /* Mantemos column-reverse para a imagem ficar ACIMA do texto no celular */
+        flex-direction: column-reverse; 
         text-align: center;
         gap: 30px;
     }
@@ -176,26 +181,26 @@ body {
         justify-content: center;
         width: 100%;
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
     
     .moldura-wrapper img {
-        max-width: 240px; 
+        max-width: 250px; /* Um pouco maior para destaque no mobile */
     }
     
     .moldura-wrapper {
-        padding: 5px;
+        padding: 0;
     }
 
     .grupo-botoes {
-        flex-direction: column; /* No celular, um em cima do outro */
-        width: 100%;            /* Ocupa a largura toda */
+        flex-direction: column;
+        width: 100%;
         gap: 15px;
     }
 
     .btn-cta, .btn-saiba-mais {
-        width: 100%;           /* Botões esticam na largura total do celular */
-        justify-content: center; /* Garante que o texto fica no meio */
+        width: 100%;
+        justify-content: center;
     }
 }
 
@@ -627,7 +632,7 @@ html {
 
 /* Tipografia */
 .assinatura-mentor {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Roboto';
     font-size: 2.5rem;
     color: var(--cor-destaque);
     margin-bottom: 5px;
