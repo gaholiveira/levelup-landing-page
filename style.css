@@ -1337,3 +1337,42 @@ summary::-webkit-details-marker {
         text-align: center;
     }
 }
+
+.whatsapp-link {
+    position: fixed;
+    width: 65px; /* Tamanho do ícone */
+    height: 65px;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    
+    /* Remove fundo verde padrão, pois o SVG já tem cor */
+    background: transparent; 
+    
+    /* Efeito de Sombra Dourada para destacar do fundo preto */
+    filter: drop-shadow(0 4px 10px rgba(212, 175, 55, 0.3));
+    
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Garante que o SVG preencha o link */
+.whatsapp-icon {
+    width: 100%;
+    height: 100%;
+}
+
+/* Efeito Hover (Aumenta o brilho e tamanho) */
+.whatsapp-link:hover {
+    transform: scale(1.1); /* Cresce */
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6)); /* Brilha mais forte */
+}
+
+/* Ajuste Mobile */
+@media (max-width: 768px) {
+    .whatsapp-link {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
