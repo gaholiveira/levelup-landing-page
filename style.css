@@ -3,16 +3,20 @@
    Aqui definimos a lógica visual do site.
    ========================================= */
 :root {
-    /* Paleta de Cores (Baseada na referência) */
-    --cor-fundo: #050505;       /* Preto quase absoluto */
-    --cor-fundo-sec: #121212;   /* Cinza muito escuro para contraste */
-    --cor-texto: #ffffff;       /* Branco */
-    --cor-destaque: #D4AF37;    /* Dourado Metálico */
+    /* Paleta de Cores */
+    --cor-fundo: #050505;
+    --cor-fundo-sec: #121212;
+    --cor-texto: #ffffff;
     
-    /* Fontes e Tamanhos */
-    --fonte-principal: 'Arial', sans-serif; /* Podemos mudar para Google Fonts depois */
-}
+    /* Dourado Base */
+    --cor-destaque: #D4AF37; 
+    
+    /* Gradiente Dourado Premium (usado em botões e textos) */
+    --gradiente-dourado: linear-gradient(90deg, #bf953f 0%, #fcf6ba 50%, #b38728 100%);
 
+    /* Fontes */
+    --fonte-principal: 'Montserrat', sans-serif; /* Fonte atualizada para UX Premium */
+}
 /* Reset: Remove as margens padrão do navegador para termos controle total */
 * {
     margin: 0;
@@ -22,25 +26,19 @@
 }
 
 body {
-    /* Cores e Fontes Base */
     color: var(--cor-texto);
     font-family: var(--fonte-principal);
     line-height: 1.6;
-
-    /* --- O NOVO DEGRADÊ INVERTIDO (TOPO ESCURO) --- */
-    background-color: #050505; /* Cor de segurança (Preto) */
+    background-color: #050505;
     
+    /* Fundo com profundidade */
     background: 
-        /* Camada 1: O Brilho Dourado (Mais sutil no topo escuro) */
-        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.05) 0%, transparent 60%),
-        
-        /* Camada 2: O Degradê de Profundidade */
-        /* Começa PRETO no topo e vai ficando CINZA ESCURO em baixo */
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 60%),
         linear-gradient(to bottom, #050505 0%, #1a1a1a 100%);
     
-    /* Fixa o fundo na tela para efeito 3D ao rolar */
     background-attachment: fixed; 
     background-size: cover;
+    overflow-x: hidden; /* Evita rolagem lateral indesejada */
 }
 
 /* Classe utilitária para contentores (mantém o site alinhado ao centro) */
@@ -50,11 +48,25 @@ body {
     padding: 0 20px;   /* Espaçamento nas laterais em telas pequenas */
 }
 
+.texto-dourado {
+    font-weight: 700; /* Negrito forte */
+    color: var(--cor-destaque); /* Fallback para navegadores antigos */
+    
+    /* Mágica do Gradiente no Texto */
+    background: var(--gradiente-dourado);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Brilho suave para destacar do fundo preto */
+    filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.3));
+}
+
 /* =========================================
    2. HERO SECTION
    ========================================= */
 .hero {
-    min-height: 85vh; 
+    min-height: 90vh; 
     display: flex;
     align-items: center;
     padding: 30px 0;
