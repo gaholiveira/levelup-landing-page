@@ -687,128 +687,169 @@ html {
 }
 
 /* =========================================
-   SECÇÃO 4: PROVA SOCIAL (MARQUEE)
+   SECÇÃO 4: EVOLUÇÃO (TIMELINE - CORREÇÃO DESKTOP)
    ========================================= */
 
 .secao-prova-social {
     padding: 80px 0;
-    overflow: hidden; /* Garante que não cria barra de rolagem horizontal na página */
     background: transparent;
 }
 
-/* O Contentor Principal */
-.marquee-wrapper {
-    width: 100%;
-    position: relative;
-    
-    /* Cria um fade nas laterais para suavizar a entrada/saída */
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-}
-
-/* A Pista que se move */
-.marquee-track {
+/* O Contentor da Linha do Tempo */
+.timeline-grid {
     display: flex;
-    gap: 30px; /* Espaço entre os cards */
-    width: max-content; /* A largura se ajusta ao conteúdo total */
-    
-    /* A Animação */
-    animation: scroll-infinito 30s linear infinite;
+    align-items: flex-start; /* Alinha pelo topo */
+    justify-content: center; /* Centraliza o grupo todo */
+    gap: 10px; /* Reduzimos o espaço para caber tudo */
+    margin-top: 50px;
+    flex-wrap: wrap; 
 }
 
-/* Pausa a animação quando passa o mouse (para ler com calma) */
-.marquee-track:hover {
-    animation-play-state: paused;
-}
-
-/* Estilo do Card de Depoimento */
-.depoimento-card {
-    width: 350px; /* Largura fixa para todos */
-    background: rgba(255, 255, 255, 0.03); /* Vidro escuro */
-    border: 1px solid rgba(255, 255, 255, 0.05);
+/* O Card Individual (Ligeiramente mais estreito) */
+.card-mes {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
-    padding: 30px;
-    flex-shrink: 0; /* Impede que o card seja esmagado */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: 0.3s;
+    padding: 15px;
+    text-align: center;
+    
+    /* MUDANÇA: Reduzimos de 240px para 215px para caberem 4 lado a lado */
+    width: 215px; 
+    
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    backdrop-filter: blur(5px);
+    position: relative;
 }
 
-.depoimento-card:hover {
-    border-color: var(--cor-destaque);
-    background: rgba(255, 255, 255, 0.05);
+/* Efeito Hover */
+.card-mes:hover {
+    transform: translateY(-10px);
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 10; /* Garante que o card fica por cima ao dar zoom */
 }
 
-/* Estilo específico para quando o card é só imagem (Print) */
-.depoimento-card.imagem {
-    padding: 0;
+/* Destaque para o último mês */
+.card-mes.destaque-final {
+    border: 1px solid var(--cor-destaque);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+    transform: scale(1.05); 
+    z-index: 5;
+}
+
+.card-mes.destaque-final:hover {
+    transform: scale(1.08) translateY(-10px);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+}
+
+/* Tag do Mês */
+.tag-mes {
+    display: block;
+    background: rgba(0,0,0,0.6);
+    padding: 8px 0;
+    margin: -15px -15px 15px -15px;
+    border-radius: 15px 15px 0 0;
+    font-size: 0.85rem; /* Fonte ligeiramente menor */
+    text-transform: uppercase;
+    color: #ccc;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.destaque-final .tag-mes {
+    background: var(--gradiente-dourado);
+    color: #000;
+}
+
+/* A Moldura da Imagem */
+.moldura-print {
+    width: 100%;
+    height: 400px; /* Altura do telemóvel */
     overflow: hidden;
-    height: 300px; /* Altura padronizada */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background-color: #000;
 }
 
-.depoimento-card.imagem img {
+/* CONFIGURAÇÃO DO ZOOM E ALINHAMENTO */
+.moldura-print img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: 0.5s;
+    object-fit: cover; 
+    object-position: top left; /* Alinha à esquerda */
+    transform: scale(1.25); /* Zoom fixo */
+    transform-origin: top left; /* Zoom a partir da esq */
+    transition: transform 0.5s ease;
 }
 
-.depoimento-card.imagem:hover img {
-    transform: scale(1.05);
+.card-mes:hover .moldura-print img {
+    transform: scale(1.35); /* Zoom extra no hover */
 }
 
-/* Detalhes do Texto */
-.aspas {
-    font-size: 4rem;
-    color: var(--cor-destaque);
-    line-height: 0.5;
-    font-family: serif;
-    margin-bottom: 20px;
-    opacity: 0.5;
-}
-
-.depoimento-card p {
-    color: #ccc;
-    font-style: italic;
-    margin-bottom: 20px;
-    font-size: 1rem;
-}
-
-.aluno-nome {
+/* Dados Financeiros */
+.dados-mes .label {
     display: block;
-    color: #fff;
-    font-weight: bold;
-}
-
-.aluno-resultado {
-    display: block;
-    color: var(--cor-destaque);
-    font-size: 0.9rem;
+    font-size: 0.7rem;
+    color: #888;
     text-transform: uppercase;
-    font-weight: bold;
+    margin-bottom: 2px;
 }
 
-/* --- A MÁGICA DO MOVIMENTO --- */
-@keyframes scroll-infinito {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        /* Move para a esquerda exatamente 50% do tamanho total */
-        /* Como duplicamos o conteúdo, o 50% é exatamente onde começa a repetição */
-        transform: translateX(-50%);
-    }
+.dados-mes .valor {
+    font-size: 1.1rem; /* Ajuste leve para não quebrar linha */
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
-/* Ajuste Mobile */
+/* Seta entre cards */
+.seta-evolucao {
+    font-size: 1.2rem;
+    color: var(--cor-destaque);
+    opacity: 0.5;
+    /* Ajuste para alinhar com o centro da imagem */
+    margin-top: 200px; 
+    padding: 0 5px; /* Espaço mínimo nas laterais da seta */
+}
+
+/* =========================================
+   RESPONSIVIDADE (MOBILE) - AJUSTADO
+   ========================================= */
 @media (max-width: 900px) {
-    .depoimento-card {
-        width: 280px; /* Cards menores no celular */
-    }
     
-    .marquee-track {
-        animation-duration: 20s; /* Um pouco mais rápido no celular para dinamismo */
+    .timeline-grid {
+        flex-direction: column; /* Um em cima do outro */
+        gap: 40px;
+        align-items: center;
+    }
+
+    /* Ajuste da Seta no Mobile */
+    .seta-evolucao {
+        transform: rotate(90deg); /* Aponta para baixo */
+        margin: -20px 0; /* Cola os cards verticalmente */
+        font-size: 2rem;
+    }
+
+    /* O Card volta a ser Vertical (Estilo Feed do Instagram) */
+    .card-mes {
+        width: 100%; 
+        max-width: 300px; /* Um pouco mais largo no mobile para ver bem */
+        display: block; /* Garante que é bloco, não flex-row */
+        padding: 15px;
+    }
+
+    /* Mantemos a imagem GRANDE no mobile também */
+    .moldura-print {
+        height: 400px; /* Imagem alta para leitura fácil */
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+
+    /* Removemos zoom excessivo que pode quebrar layout mobile */
+    .card-mes.destaque-final {
+        transform: none;
+        max-width: 320px;
     }
 }
 
@@ -1388,3 +1429,4 @@ summary::-webkit-details-marker {
         right: 20px;
     }
 }
+
