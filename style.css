@@ -1430,3 +1430,61 @@ summary::-webkit-details-marker {
     }
 }
 
+/* =========================================
+   SECÇÃO PROBLEMAS (DOR)
+   ========================================= */
+.secao-problemas {
+    padding: 60px 0;
+    background: rgba(255, 255, 255, 0.02); /* Fundo muito subtil */
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.lista-problemas {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas no PC */
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.item-problema {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 50, 50, 0.1); /* Borda avermelhada subtil (alerta) */
+    transition: 0.3s;
+}
+
+.item-problema:hover {
+    background: rgba(255, 50, 50, 0.05);
+    transform: translateX(5px);
+}
+
+.icone-x {
+    color: #ff4d4d; /* Vermelho alerta */
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.item-problema p {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.item-problema strong {
+    color: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .lista-problemas {
+        grid-template-columns: 1fr; /* Uma coluna no telemóvel */
+        gap: 15px;
+    }
+}
+
