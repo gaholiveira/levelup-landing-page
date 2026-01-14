@@ -27,6 +27,45 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "866629575990042");
+      fbq("track", "PageView");
+    </script>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=866629575990042&ev=PageView&noscript=1"
+        alt=""
+      />
+    </noscript>
+    <!-- End Meta Pixel Code -->
+
     <!-- Preconnect para performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -66,8 +105,21 @@
               Transforme sua presença online em uma máquina de vendas previsível
               através de uma gestão estratégica de alta performance.
             </p>
+            <p
+              style="
+                color: var(--cor-destaque);
+                font-weight: 600;
+                font-size: 1.1rem;
+                margin: -20px 0 30px 0;
+              "
+            >
+              <strong>Diagnóstico Grátis</strong> - Descubra como escalar seu
+              negócio sem compromisso
+            </p>
             <div class="grupo-botoes">
-              <a href="#aplicacao" class="btn-cta">Estou Pronto</a>
+              <a href="#aplicacao" class="btn-cta"
+                >Quero meu Diagnóstico Grátis</a
+              >
               <a href="#depoimentos" class="btn-saiba-mais">
                 <span>Ver Resultados</span>
                 <div class="seta-direita"></div>
@@ -125,6 +177,31 @@
               <strong>concorrência</strong>.
             </p>
           </div>
+        </div>
+        <div
+          style="
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+          "
+        >
+          <h3 style="color: #fff; margin-bottom: 15px; font-size: 1.5rem">
+            Pronto para descobrir
+            <span class="texto-dourado">sua solução</span>?
+          </h3>
+          <p style="color: #ccc; margin-bottom: 25px; font-size: 1.1rem">
+            Receba um
+            <strong style="color: var(--cor-destaque)"
+              >Diagnóstico Grátis</strong
+            >
+            e descubra exatamente o que está impedindo seu negócio de escalar.
+          </p>
+          <a href="#aplicacao" class="btn-cta" style="display: inline-block">
+            Quero meu Diagnóstico Grátis Agora
+          </a>
         </div>
       </div>
     </section>
@@ -392,9 +469,26 @@
               <span class="texto-dourado">é uma decisão</span>
             </h2>
             <p>
-              Nossa atuação é seletiva. Realizamos uma análise prévia para
-              garantir que sua empresa tem o perfil exato para nossa metodologia
-              de escala.
+              Nossa atuação é seletiva. Realizamos uma
+              <strong>análise prévia gratuita</strong> para garantir que sua
+              empresa tem o perfil exato para nossa metodologia de escala.
+            </p>
+            <p
+              style="
+                background: rgba(212, 175, 55, 0.1);
+                border-left: 3px solid var(--cor-destaque);
+                padding: 15px;
+                border-radius: 5px;
+                margin: 20px 0;
+                color: #fff;
+              "
+            >
+              <strong style="color: var(--cor-destaque)"
+                >✨ Diagnóstico Completo Grátis:</strong
+              ><br />
+              Receba uma análise detalhada do seu negócio, identifique
+              oportunidades de crescimento e descubra o potencial real de
+              escalabilidade - <strong>100% gratuito e sem compromisso</strong>.
             </p>
             <div class="criterios-box">
               <h3>
@@ -406,12 +500,29 @@
                 <li>Quem está disposto a seguir um método validado.</li>
                 <li>Quem procura acompanhamento próximo, não apenas aulas.</li>
               </ul>
+              <p
+                style="
+                  margin-top: 20px;
+                  padding-top: 20px;
+                  border-top: 1px solid rgba(212, 175, 55, 0.2);
+                  color: var(--cor-destaque);
+                  font-weight: 600;
+                  text-align: center;
+                "
+              >
+                Comece com um <strong>Diagnóstico Grátis</strong> e descubra se
+                é para você!
+              </p>
             </div>
           </div>
           <div class="form-visual-box escondido">
             <div class="cabecalho-form">
-              <h3>Formulário de Aplicação</h3>
-              <p>Preencha os dados abaixo para garantir sua reunião.</p>
+              <h3>Garanta seu Diagnóstico Grátis</h3>
+              <p>
+                Preencha os dados abaixo e receba uma análise completa do seu
+                negócio
+                <strong style="color: var(--cor-destaque)">sem custo</strong>.
+              </p>
             </div>
             <form
               class="form-grid"
@@ -459,7 +570,7 @@
                 </select>
               </div>
               <button type="submit" class="btn-cta btn-full">
-                Agendar análise
+                Quero meu Diagnóstico Grátis
                 <svg
                   width="15"
                   height="15"
@@ -476,6 +587,18 @@
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </button>
+              <p
+                class="privacidade-text"
+                style="
+                  text-align: center;
+                  font-size: 0.85rem;
+                  color: var(--cor-destaque);
+                  margin-top: 10px;
+                  font-weight: 600;
+                "
+              >
+                Diagnóstico 100% Grátis • Sem compromisso
+              </p>
               <p class="privacidade-text">🔒 Seus dados estão 100% seguros.</p>
             </form>
           </div>
@@ -774,8 +897,20 @@
 
             if (error) throw error;
 
-            const mensagem = `Olá, acabei de preencher o formulário para a Minha Análise.%0A%0AMe chamo *${dados.nome}*.%0AFaturamento: ${dados.faturamento}.%0A%0AGostaria de saber os próximos passos.`;
-            window.location.href = `https://wa.me/${NUMERO_WHATSAPP}?text=${mensagem}`;
+            // Dispara evento de conversão de Lead no Meta Pixel ANTES do redirecionamento
+            if (typeof fbq !== "undefined") {
+              fbq("track", "Lead");
+            }
+
+            // Aguarda um pequeno delay para garantir que o evento do Pixel seja enviado
+            // antes do redirecionamento para o WhatsApp
+            const mensagem = `Olá! Acabei de preencher o formulário para receber meu *Diagnóstico Grátis*.%0A%0A*Meus dados:*%0A• Nome: *${dados.nome}*%0A• Faturamento atual: ${dados.faturamento}%0A%0AGostaria de agendar minha análise gratuita e descobrir como escalar meu negócio!%0A%0AQual o próximo passo?`;
+
+            // Redireciona após o disparo do evento (delay de 150ms para garantir envio)
+            setTimeout(() => {
+              window.location.href = `https://wa.me/${NUMERO_WHATSAPP}?text=${mensagem}`;
+            }, 150);
+
             form.reset();
           } catch (erro) {
             console.error("Erro:", erro);
