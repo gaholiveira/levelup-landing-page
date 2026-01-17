@@ -1506,12 +1506,17 @@ summary::-webkit-details-marker {
 .evolucao-valor {
   font-size: 1.5rem;
   font-weight: 900;
-  color: #4ade80;
+  color: var(--cor-destaque);
+  background: var(--gradiente-dourado);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   letter-spacing: 0.5px;
   display: block;
 }
 
 .evolucao-valor.texto-dourado {
+  /* Mantém o mesmo estilo para compatibilidade */
   color: var(--cor-destaque);
   background: var(--gradiente-dourado);
   -webkit-background-clip: text;
@@ -1593,5 +1598,234 @@ summary::-webkit-details-marker {
 
   .evolucao-valor {
     font-size: 1.15rem;
+  }
+}
+
+/* =========================================
+   LIGHTBOX MODAL
+   ========================================= */
+.evolucao-imagem {
+  position: relative;
+}
+
+.lightbox-trigger {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* Overlay escuro que aparece no hover (Desktop) */
+.lightbox-trigger::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+/* Desktop: Overlay aparece no hover */
+@media (hover: hover) and (pointer: fine) {
+  .lightbox-trigger:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Indicador de Zoom Premium (SVG) */
+.zoom-indicator {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+}
+
+.zoom-indicator svg {
+  width: 20px;
+  height: 20px;
+  color: var(--cor-destaque);
+  stroke: currentColor;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mobile: Indicador sempre visível (discreto) */
+.zoom-indicator {
+  opacity: 0.85;
+  transform: scale(0.9);
+}
+
+/* Desktop: Indicador invisível por padrão, aparece no hover */
+@media (hover: hover) and (pointer: fine) {
+  .zoom-indicator {
+    opacity: 0;
+    transform: scale(0.8) translateY(5px);
+  }
+
+  .lightbox-trigger:hover .zoom-indicator {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    background: rgba(212, 175, 55, 0.95);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+  }
+
+  .lightbox-trigger:hover .zoom-indicator svg {
+    color: #000;
+    transform: scale(1.1);
+  }
+}
+
+/* Animação da imagem no hover (Desktop) */
+.lightbox-trigger picture {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lightbox-trigger:hover picture {
+    transform: scale(1.03);
+    opacity: 0.9;
+  }
+}
+
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.lightbox-modal[aria-hidden="true"] {
+  display: none;
+}
+
+.lightbox-modal[aria-hidden="false"] {
+  display: flex;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
+  animation: lightboxFadeIn 0.3s ease;
+}
+
+@keyframes lightboxFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 3rem;
+  color: var(--cor-texto);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease, transform 0.3s ease;
+  z-index: 10001;
+  line-height: 1;
+  padding: 0;
+}
+
+.lightbox-close:hover {
+  color: var(--cor-destaque);
+  transform: rotate(90deg);
+}
+
+.lightbox-close:focus {
+  outline: 2px solid var(--cor-destaque);
+  outline-offset: 4px;
+}
+
+/* Mobile adjustments for lightbox */
+@media (max-width: 768px) {
+  .lightbox-close {
+    top: 10px;
+    right: 15px;
+    font-size: 2.5rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  .lightbox-content {
+    max-width: 95%;
+    max-height: 95%;
+  }
+
+  .lightbox-content img {
+    max-height: 85vh;
+  }
+
+  /* Ajustes do indicador no mobile */
+  .zoom-indicator {
+    width: 40px;
+    height: 40px;
+    bottom: 10px;
+    right: 10px;
+    opacity: 0.9;
+  }
+
+  .zoom-indicator svg {
+    width: 18px;
+    height: 18px;
   }
 }
