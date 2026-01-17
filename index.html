@@ -74,8 +74,8 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" />
   </head>
   <body>
     <div class="luz-ambiente">
@@ -117,10 +117,10 @@
               negócio sem compromisso
             </p>
             <div class="grupo-botoes">
-              <a href="#aplicacao" class="btn-cta"
+              <a href="#aplicacao" class="btn-cta" role="button" aria-label="Quero meu Diagnóstico Grátis - Ir para formulário de aplicação"
                 >Quero meu Diagnóstico Grátis</a
               >
-              <a href="#depoimentos" class="btn-saiba-mais">
+              <a href="#depoimentos" class="btn-saiba-mais" role="button" aria-label="Ver Resultados - Ver depoimentos e prova social">
                 <span>Ver Resultados</span>
                 <div class="seta-direita"></div>
               </a>
@@ -128,12 +128,18 @@
           </div>
           <div class="hero-img">
             <div class="moldura-wrapper">
-              <img
-                src="hero6-foto.png"
-                alt="Mentor palestrando sobre estratégias de negócio"
-                width="500"
-                height="600"
-              />
+              <picture>
+                <source srcset="assets/img/hero6-foto.webp" type="image/webp" />
+                <source srcset="assets/img/hero6-foto.png" type="image/png" />
+                <img
+                  src="assets/img/hero6-foto.png"
+                  alt="Mentor palestrando sobre estratégias de negócio"
+                  width="500"
+                  height="600"
+                  loading="eager"
+                  fetchpriority="high"
+                />
+              </picture>
             </div>
           </div>
         </div>
@@ -199,9 +205,115 @@
             >
             e descubra exatamente o que está impedindo seu negócio de escalar.
           </p>
-          <a href="#aplicacao" class="btn-cta" style="display: inline-block">
+          <a href="#aplicacao" class="btn-cta" role="button" style="display: inline-block" aria-label="Quero meu Diagnóstico Grátis Agora - Ir para formulário de aplicação">
             Quero meu Diagnóstico Grátis Agora
           </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="evolucao-resultados" class="secao-evolucao">
+      <div class="container">
+        <div class="titulo-secao">
+          <h2>Evolução de <span class="texto-dourado">Resultados</span></h2>
+          <p>Veja a trajetória real de crescimento de uma conta aplicada ao método</p>
+        </div>
+        <div class="evolucao-grid">
+          <div class="evolucao-card">
+            <div class="evolucao-header">
+              <h3>Mês 01 - A Validação</h3>
+              <span class="evolucao-subtitle">Setembro</span>
+            </div>
+            <div class="evolucao-imagem">
+              <picture>
+                <source srcset="assets/img/setembro.webp" type="image/webp" />
+                <source srcset="assets/img/setembro.png" type="image/png" />
+                <img
+                  src="assets/img/setembro.png"
+                  alt="Faturamento Setembro: R$ 851"
+                  loading="lazy"
+                  decoding="async"
+                  width="215"
+                  height="400"
+                />
+              </picture>
+            </div>
+            <div class="evolucao-footer">
+              <span class="evolucao-valor">R$ 851,00</span>
+            </div>
+          </div>
+
+          <div class="evolucao-card">
+            <div class="evolucao-header">
+              <h3>Mês 02 - A Otimização</h3>
+              <span class="evolucao-subtitle">Outubro</span>
+            </div>
+            <div class="evolucao-imagem">
+              <picture>
+                <source srcset="assets/img/outubro.webp" type="image/webp" />
+                <source srcset="assets/img/outubro.png" type="image/png" />
+                <img
+                  src="assets/img/outubro.png"
+                  alt="Faturamento Outubro: R$ 17.192"
+                  loading="lazy"
+                  decoding="async"
+                  width="215"
+                  height="400"
+                />
+              </picture>
+            </div>
+            <div class="evolucao-footer">
+              <span class="evolucao-valor">R$ 17.192,00</span>
+            </div>
+          </div>
+
+          <div class="evolucao-card">
+            <div class="evolucao-header">
+              <h3>Mês 03 - A Escala</h3>
+              <span class="evolucao-subtitle">Novembro</span>
+            </div>
+            <div class="evolucao-imagem">
+              <picture>
+                <source srcset="assets/img/novembro.webp" type="image/webp" />
+                <source srcset="assets/img/novembro.png" type="image/png" />
+                <img
+                  src="assets/img/novembro.png"
+                  alt="Faturamento Novembro: R$ 206.905"
+                  loading="lazy"
+                  decoding="async"
+                  width="215"
+                  height="400"
+                />
+              </picture>
+            </div>
+            <div class="evolucao-footer">
+              <span class="evolucao-valor">R$ 206.905,00</span>
+            </div>
+          </div>
+
+          <div class="evolucao-card destaque-final">
+            <div class="evolucao-header">
+              <h3>Mês 04 - A Consistência</h3>
+              <span class="evolucao-subtitle">Dezembro</span>
+            </div>
+            <div class="evolucao-imagem">
+              <picture>
+                <source srcset="assets/img/dezembro.webp" type="image/webp" />
+                <source srcset="assets/img/dezembro.png" type="image/png" />
+                <img
+                  src="assets/img/dezembro.png"
+                  alt="Faturamento Dezembro: R$ 244.312"
+                  loading="lazy"
+                  decoding="async"
+                  width="215"
+                  height="400"
+                />
+              </picture>
+            </div>
+            <div class="evolucao-footer">
+              <span class="evolucao-valor texto-dourado">R$ 244.312,00</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -218,13 +330,18 @@
           <div class="card-mes">
             <span class="tag-mes">Setembro</span>
             <div class="moldura-print">
-              <img
-                src="setembro.png"
-                alt="Faturamento Setembro: R$ 851"
-                loading="lazy"
-                width="215"
-                height="400"
-              />
+              <picture>
+                <source srcset="assets/img/setembro.webp" type="image/webp" />
+                <source srcset="assets/img/setembro.png" type="image/png" />
+                <img
+                  src="assets/img/setembro.png"
+                  alt="Faturamento Setembro: R$ 851"
+                  loading="lazy"
+                  decoding="async"
+                  width="215"
+                  height="400"
+                />
+              </picture>
             </div>
             <div class="dados-mes">
               <span class="label">Início</span>
@@ -235,13 +352,18 @@
           <div class="card-mes">
             <span class="tag-mes">Outubro</span>
             <div class="moldura-print">
-              <img
-                src="outubro.png"
-                alt="Faturamento Outubro: R$ 17.192"
-                loading="lazy"
-                width="215"
-                height="400"
-              />
+              <picture>
+                <source srcset="assets/img/outubro.webp" type="image/webp" />
+                <source srcset="assets/img/outubro.png" type="image/png" />
+                <img
+                  src="assets/img/outubro.png"
+                  alt="Faturamento Outubro: R$ 17.192"
+                  loading="lazy"
+                  decoding="async"
+                  width="215"
+                  height="400"
+                />
+              </picture>
             </div>
             <div class="dados-mes">
               <span class="label">Otimização</span>
@@ -252,13 +374,18 @@
           <div class="card-mes">
             <span class="tag-mes">Novembro</span>
             <div class="moldura-print">
-              <img
-                src="novembro.png"
-                alt="Faturamento Novembro: R$ 206.905"
-                loading="lazy"
-                width="215"
-                height="400"
-              />
+              <picture>
+                <source srcset="assets/img/novembro.webp" type="image/webp" />
+                <source srcset="assets/img/novembro.png" type="image/png" />
+                <img
+                  src="assets/img/novembro.png"
+                  alt="Faturamento Novembro: R$ 206.905"
+                  loading="lazy"
+                  decoding="async"
+                  width="215"
+                  height="400"
+                />
+              </picture>
             </div>
             <div class="dados-mes">
               <span class="label">Escala</span>
@@ -269,13 +396,18 @@
           <div class="card-mes destaque-final">
             <span class="tag-mes">Dezembro</span>
             <div class="moldura-print">
-              <img
-                src="dezembro.png"
-                alt="Faturamento Dezembro: R$ 244.312"
-                loading="lazy"
-                width="215"
-                height="400"
-              />
+              <picture>
+                <source srcset="assets/img/dezembro.webp" type="image/webp" />
+                <source srcset="assets/img/dezembro.png" type="image/png" />
+                <img
+                  src="assets/img/dezembro.png"
+                  alt="Faturamento Dezembro: R$ 244.312"
+                  loading="lazy"
+                  decoding="async"
+                  width="215"
+                  height="400"
+                />
+              </picture>
             </div>
             <div class="dados-mes">
               <span class="label">Consistência</span>
@@ -405,13 +537,18 @@
         <div class="mentores-grid">
           <div class="mentor-card escondido">
             <div class="mentor-foto">
-              <img
-                src="mentor-foto.png"
-                alt="Gabriel Moreira - Mentor e especialista em marketplaces"
-                loading="lazy"
-                width="215"
-                height="400"
-              />
+              <picture>
+                <source srcset="assets/img/mentor-foto.webp" type="image/webp" />
+                <source srcset="assets/img/mentor-foto.png" type="image/png" />
+                <img
+                  src="assets/img/mentor-foto.png"
+                  alt="Gabriel Moreira - Mentor e especialista em marketplaces"
+                  loading="lazy"
+                  decoding="async"
+                  width="215"
+                  height="400"
+                />
+              </picture>
             </div>
             <div class="mentor-info">
               <h3 class="assinatura-mentor">Gabriel Moreira</h3>
@@ -430,13 +567,18 @@
           </div>
           <div class="mentor-card escondido">
             <div class="mentor-foto">
-              <img
-                src="mentor-foto2.png"
-                alt="Stevam Gonçalves - Mentor especialista em anúncios e experiência do cliente"
-                loading="lazy"
-                width="215"
-                height="400"
-              />
+              <picture>
+                <source srcset="assets/img/mentor-foto2.webp" type="image/webp" />
+                <source srcset="assets/img/mentor-foto2.png" type="image/png" />
+                <img
+                  src="assets/img/mentor-foto2.png"
+                  alt="Stevam Gonçalves - Mentor especialista em anúncios e experiência do cliente"
+                  loading="lazy"
+                  decoding="async"
+                  width="215"
+                  height="400"
+                />
+              </picture>
             </div>
             <div class="mentor-info">
               <h3 class="assinatura-mentor">Stevam Gonçalves</h3>
@@ -536,6 +678,10 @@
                   name="nome"
                   placeholder="Seu nome aqui"
                   required
+                  minlength="3"
+                  maxlength="100"
+                  pattern="[A-Za-zÀ-ÿ\s]{3,100}"
+                  title="Digite seu nome completo (mínimo 3 caracteres)"
                 />
               </div>
               <div class="input-group">
@@ -546,6 +692,11 @@
                   name="whatsapp"
                   placeholder="(00) 00000-0000"
                   required
+                  inputmode="numeric"
+                  pattern="[\(][0-9]{2}[\)]\s[0-9]{4,5}[-][0-9]{4}"
+                  title="Digite seu WhatsApp no formato (00) 00000-0000"
+                  minlength="14"
+                  maxlength="15"
                 />
               </div>
               <div class="input-group">
@@ -556,6 +707,8 @@
                   name="email"
                   placeholder="seu@email.com"
                   required
+                  autocomplete="email"
+                  title="Digite um e-mail válido"
                 />
               </div>
               <div class="input-group">
@@ -569,7 +722,7 @@
                   <option value="Acima de 50k">Acima de R$ 50k/mês</option>
                 </select>
               </div>
-              <button type="submit" class="btn-cta btn-full">
+              <button type="submit" class="btn-cta btn-full" aria-label="Enviar formulário para receber Diagnóstico Grátis">
                 Quero meu Diagnóstico Grátis
                 <svg
                   width="15"
@@ -833,95 +986,7 @@
       </svg>
     </a>
 
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-    <script>
-      // Intersection Observer para animações de scroll
-      const observador = new IntersectionObserver(
-        (entradas) => {
-          entradas.forEach((entrada) => {
-            if (entrada.isIntersecting) {
-              entrada.target.classList.add("mostrar");
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      document
-        .querySelectorAll(".escondido")
-        .forEach((el) => observador.observe(el));
-
-      // Configurações Supabase
-      const SUPABASE_URL = "https://ofygwnnzwkxiqgnardox.supabase.co";
-      const SUPABASE_KEY =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9meWd3bm56d2t4aXFnbmFyZG94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU0MTY5MzIsImV4cCI6MjA4MDk5MjkzMn0.lDkATZdUmXAKnKS6sKPLkXakSpnSoGBar4hFYbphNnI";
-      const NUMERO_WHATSAPP = "5516993084235";
-      const clienteSupabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-      // Máscara de telefone
-      const inputPhone = document.querySelector('input[type="tel"]');
-      if (inputPhone) {
-        inputPhone.addEventListener("input", (e) => {
-          let x = e.target.value
-            .replace(/\D/g, "")
-            .match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
-          e.target.value = !x[2]
-            ? x[1]
-            : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
-        });
-      }
-
-      // Formulário
-      const form = document.querySelector(".form-grid");
-      const btnEnviar = document.querySelector(".btn-full");
-
-      if (form && btnEnviar) {
-        form.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const textoOriginal = btnEnviar.innerHTML;
-          btnEnviar.innerHTML = "Processando...";
-          btnEnviar.disabled = true;
-
-          const inputs = form.querySelectorAll("input, select");
-          const dados = {
-            nome: inputs[0].value,
-            whatsapp: inputs[1].value,
-            email: inputs[2].value,
-            faturamento: inputs[3].value,
-          };
-
-          try {
-            const { error } = await clienteSupabase
-              .from("aplicacoes_mentoria")
-              .insert([dados]);
-
-            if (error) throw error;
-
-            // Dispara evento de conversão de Lead no Meta Pixel ANTES do redirecionamento
-            if (typeof fbq !== "undefined") {
-              fbq("track", "Lead");
-            }
-
-            // Aguarda um pequeno delay para garantir que o evento do Pixel seja enviado
-            // antes do redirecionamento para o WhatsApp
-            const mensagem = `Olá! Acabei de preencher o formulário para receber meu *Diagnóstico Grátis*.%0A%0A*Meus dados:*%0A• Nome: *${dados.nome}*%0A• Faturamento atual: ${dados.faturamento}%0A%0AGostaria de agendar minha análise gratuita e descobrir como escalar meu negócio!%0A%0AQual o próximo passo?`;
-
-            // Redireciona após o disparo do evento (delay de 150ms para garantir envio)
-            setTimeout(() => {
-              window.location.href = `https://wa.me/${NUMERO_WHATSAPP}?text=${mensagem}`;
-            }, 150);
-
-            form.reset();
-          } catch (erro) {
-            console.error("Erro:", erro);
-            const mensagemErro = `Olá, tentei aplicar pelo site mas deu erro. Me chamo ${dados.nome}.`;
-            window.location.href = `https://wa.me/${NUMERO_WHATSAPP}?text=${mensagemErro}`;
-          } finally {
-            btnEnviar.innerHTML = textoOriginal;
-            btnEnviar.disabled = false;
-          }
-        });
-      }
-    </script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2" defer></script>
+    <script src="assets/js/main.js" defer></script>
   </body>
 </html>
